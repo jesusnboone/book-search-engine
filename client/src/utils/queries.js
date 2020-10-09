@@ -7,15 +7,16 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      friendCount
       savedBooks {
-        _id
+        bookId
         authors
         description
-        bookId
+        title
         image
         link
-        title
+
       }
+  
+    }
   }
 `;

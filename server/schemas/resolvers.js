@@ -46,7 +46,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { Book: Book._id } },
+                    { $push: { book: book.bookId } },
                     { new: true }
                 );
 
@@ -61,7 +61,7 @@ const resolvers = {
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { Book: Book._id } },
+                    { $pull: { book: book.bookId } },
                     { new: true }
                 );
 
