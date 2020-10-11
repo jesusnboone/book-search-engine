@@ -27,7 +27,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = useMutation(LOGIN_USER);
+      const [response, {data}] = useMutation(LOGIN_USER);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
