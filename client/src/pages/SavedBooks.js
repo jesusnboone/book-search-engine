@@ -27,7 +27,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const [response, {data}] = useMutation(REMOVE_BOOK);
+      const response = await deleteBook(bookId, token);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
