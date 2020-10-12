@@ -37,6 +37,7 @@ const SearchBooks = () => {
       }
 
       const { items } = await response.json();
+      console.log(items);
 
       const bookData = items.map((book) => ({
         bookId: book.id,
@@ -67,13 +68,9 @@ const SearchBooks = () => {
 
     try {
       const { data } = await saveBook({
-        variables: { ...savedBookIds }
+        variables: { bookData: { ...bookToSave } },
       });
-
-      Auth.login(data.addUser.token);
-
-
-      // if book successfully saves to user's account, save book id to state
+      console.log(savedBookIds);
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
