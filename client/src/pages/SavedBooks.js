@@ -3,9 +3,9 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
-import { useQuery } from '@apollo/react-hooks';
+
 import { QUERY_ME } from '../utils/queries';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { REMOVE_BOOK } from '../utils/mutations';
 const SavedBooks = () => {
   const [removeBook, { error }] = useMutation(REMOVE_BOOK);
@@ -21,7 +21,7 @@ const SavedBooks = () => {
 
     try {
       const { data } = await removeBook({
-        variables: { ...bookId }
+        variables: { bookId }
       });
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
@@ -29,6 +29,9 @@ const SavedBooks = () => {
       console.error(err);
     }
   };
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   // if data isn't here yet, say so
   return (
